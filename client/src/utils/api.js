@@ -9,15 +9,6 @@ export const getToken = () => localStorage.getItem('token')
 //delete it once we no longer want it.
 export const removeToken = () => localStorage.removeItem('token')
 
-export const axiosWithoutAuth = () => {
-
-    return (
-        axios.create({
-            baseURL: 'http://localhost:5000/api'
-        })
-    )
-}
-
 export const axiosWithAuth = () => {
     return(
         axios.create({

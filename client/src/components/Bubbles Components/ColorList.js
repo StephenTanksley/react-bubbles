@@ -10,28 +10,26 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
-  const [newColor, setNewColor] = useState(initialColor)
+
+  //gotta hit MVP first.
+  // const [newColor, setNewColor] = useState(initialColor)
 
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
   };
 
+  //U of CRUD - Update
   const saveEdit = e => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
     axios()
-      .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
-      .then(response => [
-        updateColors([
-          ...colors.filter(color => color.id !== response.data.id),
-          response.data
-        ]),
-        setEditing(false),
-        setColorToEdit(initialColor)
-      ])
+      .put(`/colors/${colorToEdit.id}`, colorToEdit)
+      .then(response => {
+        updateColors(colors.map(color => color.id === response.data.id 
+          ? response.data 
+          : color))
+        setEditing(false)
+      })
       .catch(error => console.log(error))
   };
 
@@ -46,16 +44,17 @@ const ColorList = ({ colors, updateColors }) => {
       .catch(error => console.log(error))
   };
 
-  const addColor = e => {
-    e.preventDefault()
-    axios()
-      .post(`/colors`, newColor)
-      .then(response => {
-        console.log(response);
-        setNewColor(initialColor)
-      })
-      .catch(error => console.log(error))
-  }
+  //have to hit MVP first.
+  // const addColor = e => {
+  //   e.preventDefault()
+  //   axios()
+  //     .post(`/colors`, newColor)
+  //     .then(response => {
+  //       console.log(response);
+  //       setNewColor(initialColor)
+  //     })
+  //     .catch(error => console.log(error))
+  // }
 
   return (
     <div className="colors-wrap">
