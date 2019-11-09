@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosWithAuth as axios } from '../../utils/api'
 
 const initialColor = {
   color: "",
@@ -11,21 +11,50 @@ const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
+  //gotta hit MVP first.
+  // const [newColor, setNewColor] = useState(initialColor)
+
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
   };
 
+  //U of CRUD - Update
   const saveEdit = e => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+    axios()
+      .put(`/colors/${colorToEdit.id}`, colorToEdit)
+      .then(response => {
+        updateColors(colors.map(color => color.id === response.data.id 
+          ? response.data 
+          : color))
+        setEditing(false)
+      })
+      .catch(error => console.log(error))
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    axios()
+      .delete(`/colors/${color.id}`)
+      .then(response => {
+        console.log(response);
+        updateColors([...colors.filter(color => color.id !== response.data)])
+      })
+      .catch(error => console.log(error))
   };
+
+  //have to hit MVP first.
+  // const addColor = e => {
+  //   e.preventDefault()
+  //   axios()
+  //     .post(`/colors`, newColor)
+  //     .then(response => {
+  //       console.log(response);
+  //       setNewColor(initialColor)
+  //     })
+  //     .catch(error => console.log(error))
+  // }
 
   return (
     <div className="colors-wrap">
