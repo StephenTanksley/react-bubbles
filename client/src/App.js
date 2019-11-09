@@ -20,8 +20,8 @@ function App() {
       <div className="App">
 
         <Navigation />
-        
-        <Route exact path="/" component={Login} />
+
+        <Route exact path="/login" component={Login} />
 
         <PrivateRoute exact path="/bubble-page" component={BubblePage} />
         <PrivateRoute exact path="/logout" component={Logout} />

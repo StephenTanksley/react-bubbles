@@ -10,6 +10,7 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [newColor, setNewColor] = useState(initialColor)
 
   const editColor = color => {
     setEditing(true);
@@ -45,9 +46,16 @@ const ColorList = ({ colors, updateColors }) => {
       .catch(error => console.log(error))
   };
 
-  // const addColor = e => {
-  //   e.preventDefault()
-  // }
+  const addColor = e => {
+    e.preventDefault()
+    axios()
+      .post(`/colors`, newColor)
+      .then(response => {
+        console.log(response);
+        setNewColor(initialColor)
+      })
+      .catch(error => console.log(error))
+  }
 
   return (
     <div className="colors-wrap">
