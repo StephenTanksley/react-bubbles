@@ -45,9 +45,9 @@ const ColorList = ({ colors, updateColors }) => {
       .catch(error => console.log(error))
   };
 
-  const addColor = e => {
-    e.preventDefault()
-  }
+  // const addColor = e => {
+  //   e.preventDefault()
+  // }
 
   return (
     <div className="colors-wrap">
