@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Login from "./components/Login";
+import Login from "./components/Login - Logout/Login";
+import PrivateRoute from './components/PrivateRoute'
 import "./styles.scss";
 
 function App() {

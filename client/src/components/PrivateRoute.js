@@ -19,4 +19,4 @@ const PrivateRoute = (props) => {
     }} />
 )}
 
-export default ProtectedRoute;
+export default PrivateRoute;
