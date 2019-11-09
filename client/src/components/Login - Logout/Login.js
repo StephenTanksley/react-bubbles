@@ -8,34 +8,24 @@ const Login = (props) => {
 
   //I need to make my call on login that sends along my credentials to the server, gets the token, and then uses that to validate further requests.
 
-  // const initialState = {
-  //   username: '',
-  //   password:'',
-  //   isLoading: false
-  // }
+  const authorized = {
+      username: '',
+      password:''
+    }
 
-  const [user, setUser] = useState({
-    username: '',
-    password:'',
-    isLoading: false
-  })
-
+  const [authUser, setAuthUser] = useState(authorized)
   const [error, setError] = useState()
 
   const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    })
+    setAuthUser({...authUser, [e.target.name]: e.target.value})
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     axios()
-      .post('/login', user)
+      .post('/login', authUser)
       .then(response => {
-        console.log(response)
-        setToken('token', response.data.payload)
+        setToken(response.data.payload)
         props.history.push('/bubble-page')
         // setUser(initialState)
         // ^^ I may end up taking this out. It may be redundant. ^^
@@ -60,7 +50,7 @@ const Login = (props) => {
             type='text'
             name='username'
             className="input-field"
-            value={user.username}
+            value={authUser.username}
             placeholder="Username"
             onChange={handleChange}  
             />
@@ -69,12 +59,12 @@ const Login = (props) => {
             type='text'
             name='password'
             className="input-field"
-            value={user.password}
+            value={authUser.password}
             placeholder="password"
             onChange={handleChange}  
             />
-        </form>
         <button type="submit">Login</button>
+        </form>
       </div>
     </>
   );
