@@ -8,11 +8,12 @@ const Login = (props) => {
 
   //I need to make my call on login that sends along my credentials to the server, gets the token, and then uses that to validate further requests.
 
-  const initialState = {
-    username: '',
-    password:'',
-    isLoading: false
-  }
+  // const initialState = {
+  //   username: '',
+  //   password:'',
+  //   isLoading: false
+  // }
+  
   const [user, setUser] = useState({
     username: '',
     password:'',
