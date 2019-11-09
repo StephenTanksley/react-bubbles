@@ -13,7 +13,7 @@ const Login = (props) => {
   //   password:'',
   //   isLoading: false
   // }
-  
+
   const [user, setUser] = useState({
     username: '',
     password:'',
@@ -49,31 +49,33 @@ const Login = (props) => {
 
   return (
     <>
-      <h1>Welcome to the Bubble App!</h1>
+      <div className = 'login-form'>
+        <h1>Welcome to the Bubble App!</h1>
 
-      {/* We want to see the error on the page if there is an error. */}
-      {error && <div className="error">{`${error}`}</div>}
+        {/* We want to see the error on the page if there is an error. */}
+        {error && <div className="error">{`${error}`}</div>}
 
-      <form onSubmit={handleSubmit}>
-        <input 
-          type='text'
-          name='username'
-          className="input-field"
-          value={user.username}
-          placeholder="Username"
-          onChange={handleChange}  
-          />
+        <form onSubmit={handleSubmit}>
+          <input 
+            type='text'
+            name='username'
+            className="input-field"
+            value={user.username}
+            placeholder="Username"
+            onChange={handleChange}  
+            />
 
-        <input 
-          type='text'
-          name='password'
-          className="input-field"
-          value={user.password}
-          placeholder="password"
-          onChange={handleChange}  
-          />
-      </form>
-      <button type="submit">Login</button>
+          <input 
+            type='text'
+            name='password'
+            className="input-field"
+            value={user.password}
+            placeholder="password"
+            onChange={handleChange}  
+            />
+        </form>
+        <button type="submit">Login</button>
+      </div>
     </>
   );
 };

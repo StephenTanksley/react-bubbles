@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { Logout } from '../../utils/api'
+import { removeToken } from '../../utils/api'
 
 export default function Logout(props) {
 
